@@ -1,0 +1,97 @@
+<template name="requester">
+  <body>
+    {{#if notLoggedIn}}
+      {{> nickModalRequester}}
+    {{else}}
+      <div class="row" id="header">
+        <div class="container span12" id="headerInner">
+          <h2 id="logo" class="pull-left brand">
+            Chorus<strong>Live</strong>: User Portal
+          </h2>
+          {{> muteButtonRequester}}
+
+          {{> loginButtons}} <span style="color: #fff">(id: {{ currentUser._id }})</span>
+        </div>
+      </div>
+
+      <div class="container" id="content">
+        {{> messagesRequester}}
+      </div>
+
+      <div id="footer">
+        {{> messagesInputRequester}}
+      </div>
+    {{/if}}
+  </body>
+</template>
+
+<head>
+  <title>ChorusLive</title>
+</head>
+
+  <template name="nickModalRequester">
+    <div class="modal" id="nickPickModal">
+      <div class="modal-header">
+        <h3>Pick a Nick Name</h3>
+      </div>
+      <div class="modal-body">
+            {{> loginButtons}}
+      </div>
+    </div>
+  </template>
+
+
+  <template name="muteButtonRequester">
+    <button id="mute" class="btn btn-small btn-inverse pull-right">
+      <span class="{{volumeIcon}} icon-white"></span>
+    </button>
+  </template>
+
+  <template name="messagesInputRequester">
+      <div class="row" id="chatInput">
+        <div class="container span12" id="messageInputInner">
+          <form id="messageForm">
+            <input type="text" id="messageInput" placeholder="Type your message and press enter..."  autocomplete="off" >
+          </form>
+        </div>
+      </div>
+  </template>
+
+  <template name="messagesRequester">
+    <div class="row" id="messages" style="width:1%; ">
+      <div class="container span12" id="messagesInner">
+         {{#each messages}}
+            {{#if system}}
+               <p class="systemRow">⊕ {{pretty_ts timestamp}} {{body}}</p>
+            {{/if}}
+
+           {{#if isStale timestamp}}
+               {{#if successful}}
+                 <div class="msgDiv" id="{{staleMessageID}}">
+                  {{#if equals role 'requester'}}
+                      <p class="messageRow stale" timestamp="{{timestamp}}">(<span class="timestamp stale">{{pretty_ts timestamp}}</span> {{workerId}}: <i>{{body}}</i>)</p>
+                  {{else}}
+                      <p class="messageRow stale" timestamp="{{timestamp}}">(<span class="timestamp stale">{{pretty_ts timestamp}}</span> crowd: <i>{{body}}</i>)</p>
+                  {{/if}}
+                 </div>
+               {{/if}}
+           {{else}}
+               {{#if successful}}
+                 <div class="msgDiv" id="{{acceptedMessageID}}">
+                   {{#if equals role 'requester'}}
+                      <p class="messageRow {{role}} accepted" timestamp="{{timestamp}}"><span class="timestamp">{{pretty_ts timestamp}}</span> <strong>{{workerId}}:</strong>{{body}}</p>
+                   {{else}}
+                       <p class="messageRow {{role}} accepted" timestamp="{{timestamp}}"><span class="timestamp">{{pretty_ts timestamp}}</span> <strong>crowd: </strong>{{body}}</p>
+                   {{/if}}
+
+                 </div>
+               {{else}}
+                 <div class="msgDiv" id="{{unacceptedMessageID}}">
+                   <p class="messageRow {{role}}" thresh="{{voteThreshold}}" timestamp="{{timestamp}}"><span class="timestamp">{{pretty_ts timestamp}}</span> <strong>{{workerId}}:</strong>{{body}}</p>
+                 </div>
+               {{/if}}
+           {{/if}}
+         {{/each}}
+      </div>
+    </div>
+  </template>

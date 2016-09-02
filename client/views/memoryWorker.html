@@ -1,0 +1,214 @@
+<template name="memory">
+  <head>
+  <title>ChorusLive</title>
+</head>
+
+<body>
+  <div class="row" id="header">
+    <div class="container span12" id="headerInner">
+      <h2 id="logo" class="pull-left brand">
+        Chorus<strong>Live</strong>: Memory Portal
+      </h2>
+      <span style="color: #fff">(session: {{ session }})</span>
+      {{> muteButtonMemoryWorker}}
+    </div>
+  </div>
+
+  <div class="container" id="content">
+    {{> messagesMemoryWorker}}
+  </div>
+
+  <!-- <div class="container" id="memoryContent"> -->
+    {{> memoryMemoryWorker}}
+  <!-- </div> -->
+
+  <div id="footer">
+    {{> memoryInputMemoryWorker}}
+  </div>
+
+  {{> memModalMemoryWorker}}
+
+
+  <form id="mturk_form">
+  </form>
+
+
+</body>
+</template>
+
+  <template name="memModalMemoryWorker">
+    <div class="modal" id="memInfoModal" role="dialog" style="display: none;">
+      <div class="modal-header">
+        <!-- <a class="close" data-dismiss="modal">×</a> -->
+        <h3>Remember a fact about the user</h3>
+      </div>
+
+      <div class="modal-body">
+        {{> messagesForMemory}}
+        <div class="warning"></div>
+      </div> <!-- end of the modal-body class -->
+
+      <div class="modal-footer">
+        <input type="text" id="memInput" disabled="true" class="memModalTxtBox" value="" style="width: 520px; float:left;">
+
+        <form id="memInfoForm">
+          <!-- <p> -->
+            <input type="button" value="Add User Fact" class="btn btn-primary heresWhy" id="heresWhyButton" style="width: 520px; float:left; font-size: 20px" disabled="true">
+          <!-- </p> -->
+        </form>
+      </div>
+
+    </div>
+  </template>
+
+
+  <template name="muteButtonMemoryWorker">
+    <button id="mute" class="btn btn-small btn-inverse pull-right">
+      <span class="{{volumeIcon}} icon-white"></span>
+    </button>
+  </template>
+
+  <template name="messagesForMemory">
+    <div class="container memRowContainer">
+      {{#each msgsForMemory}}
+          {{#if memSnapShotFlag}}
+          <div class="makeClickable " id="{{memMsgId}}">
+              <p class="memoryRow" timestamp="{{timestamp}}"><span class="timestamp">{{pretty_ts timestamp}}</span> {{role}}:- <i>{{body}}</i> </p>
+          </div>
+          {{/if}}
+      {{/each}}
+    </div>
+  </template>
+
+  <template name="messagesMemoryWorker">
+    <div class="row" id="messages" style="width:1%; ">
+      <div class="container span7 offset5" id="messagesInner">
+        {{#each messages}}
+            {{#if system}}
+            {{else}}
+              {{#if memSnapShotFlag}}
+                <div class="msgDiv" id="{{acceptedMessageID}}">
+                  <p class="messageRow {{role}} accepted" timestamp="{{timestamp}}"><span class="timestamp">{{pretty_ts timestamp}}</span> <strong>{{role}}:</strong>{{body}}</p>
+                </div>
+              {{/if}}
+            {{/if}}
+          {{/each}}
+        </div>
+      </div>
+    </template>
+
+  <template name="memoryMemoryWorker">
+    <div class="row" id="memory" style="width:1%; ">
+      <div class="container memContainer span5" id="memoryItems">
+        {{> prefilledMemory}}
+
+        {{#each memory}}
+          <section style="width:100%;">
+            <div id="leftMem_{{memoryId}}" style="width:100%; float:left;">
+                <p id="{{memoryId}}" class="memoryRow collapseMsgListBtn"> {{memWhy}}  </p>
+                <!-- <span class="glyphicon glyphicon-star" aria-hidden="true"></span> -->
+            </div>
+            <div id="rightBtn_{{memoryId}}" >
+              <ul id="likertListGroup_{{memoryId}}" class="likert">
+                <li class="likert"><input type="radio" id="1_{{memoryId}}" name="likert_{{memoryId}}" value="0"/></li>
+                <li class="likert"> Not at all</li>
+                <li class="likert"><input type="radio" id="2_{{memoryId}}" name="likert_{{memoryId}}" value="1"/></li>
+                <li class="likert"> Somewhat</li>
+                <li class="likert"><input type="radio" id="3_{{memoryId}}" name="likert_{{memoryId}}" value="2"/></li>
+                <li class="likert"> Highly relevant </li>
+              </ul>
+            </div>
+          </section>
+          <hr/>
+          <br/>
+        {{/each}}
+      </div>
+    </div>
+
+
+
+
+  </template>
+
+  <template name="prefilledMemory">
+    <div class="row" id="memoryPrefilled" style="width:1%; ">
+      <div class="container memContainer span4" id="memoryItemsPrefilled">
+        {{#if prefill}}
+          <!-- {{#each prefilledMemory}} -->
+            <section style="width:100%;">
+              <div id="leftMem_abc" style="width:100%; float:left;">
+                  <p id="abc" class="memoryRow collapseMsgListBtn"> Doesn't like to spend more than $20 on restaurant food  </p>
+              </div>
+              <div id="rightBtn_abc" >
+                <ul id="likertListGroup_abc" class="likert">
+                  <li class="likert"><input type="radio" id="1_abc" name="likert_abc" value="0"/></li>
+                  <li class="likert"> Not at all</li>
+                  <li class="likert"><input type="radio" id="2_abc" name="likert_abc" value="1"/></li>
+                  <li class="likert"> Somewhat</li>
+                  <li class="likert"><input type="radio" id="3_abc" name="likert_abc" value="2"/></li>
+                  <li class="likert"> Highly relevant </li>
+                </ul>
+              </div>
+            </section>
+            <br>
+
+            <section style="width:100%;">
+              <div id="leftMem_def" style="width:100%; float:left;">
+                  <p id="def" class="memoryRow collapseMsgListBtn"> Children that don't like spicy food  </p>
+              </div>
+              <div id="rightBtn_def" >
+                <ul id="likertListGroup_def" class="likert">
+                  <li class="likert"><input type="radio" id="1_def" name="likert_def" value="0"/></li>
+                  <li class="likert"> Not at all</li>
+                  <li class="likert"><input type="radio" id="2_def" name="likert_def" value="1"/></li>
+                  <li class="likert"> Somewhat</li>
+                  <li class="likert"><input type="radio" id="3_def" name="likert_def" value="2"/></li>
+                  <li class="likert"> Highly relevant </li>
+                </ul>
+              </div>
+            </section>
+            <br>
+
+            <!-- <section style="width:100%;">
+              <div id="leftMem_ghi" style="width:100%; float:left;">
+                  <p id="ghi" class="memoryRow collapseMsgListBtn"> prefilled fact 3 about user  </p>
+              </div>
+              <div id="rightBtn_ghi" >
+                <ul id="likertListGroup_ghi" class="likert">
+                  <li class="likert"><input type="radio" id="1_ghi" name="likert_ghi" value="0"/></li>
+                  <li class="likert"> Not at all</li>
+                  <li class="likert"><input type="radio" id="2_ghi" name="likert_ghi" value="1"/></li>
+                  <li class="likert"> Somewhat</li>
+                  <li class="likert"><input type="radio" id="3_ghi" name="likert_ghi" value="2"/></li>
+                  <li class="likert"> Highly relevant </li>
+                </ul>
+              </div>
+            </section> -->
+
+
+          <!-- {{/each}} -->
+        {{/if}}
+      </div>
+    </div>
+  </template>
+
+
+
+  <template name="memoryInputMemoryWorker">
+      <div class="row" id="memInputOuter">
+        <!-- <div class="container span8 offset4" id="memInputInner"> -->
+        <div class="container span5 addtoMem" id="memInputInner">
+          <form id="memoryInputForm">
+            <input type="button" class="addtoMem" id="memoryInputText" value="(+) Add Messages to Memory"  autocomplete="off" >
+          </form>
+        </div>
+
+        <div class="container span1" id="submitHITDiv">
+          <input type="button" class="btn btn-lg btn-warning" id="submitHIT" value="Submit HIT" style="font-size: 22px; opacity: 0.80; ">
+        </div>
+
+        <div id="instructions">
+        </div>
+
+      </div>
+  </template>

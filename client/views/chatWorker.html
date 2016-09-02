@@ -1,0 +1,146 @@
+<template name="chatWorker">
+  <body>
+  <div class="row" id="header">
+    <div class="container span12" id="headerInner">
+      <h2 id="logo" class="pull-left brand">
+        Chorus<strong>Live</strong>: Conversation Portal
+      </h2>
+      <span style="color: #fff">(session: {{ session }})</span>
+      {{> muteButtonChatWorker}}
+    </div>
+  </div>
+
+  <div class="container" id="content">
+    {{> messagesChatWorker}}
+  </div>
+
+  <!-- <div class="container" id="memoryContent"> -->
+  {{#if showMemory}}
+    {{> memoryChatWorker}}
+  {{/if}}
+  <!-- </div> -->
+
+  <div id="footer">
+    {{> messagesInputChatWorker}}
+  </div>
+</body>
+</template>
+
+<head>
+  <title>ChorusLive</title>
+</head>
+
+  <template name="muteButtonChatWorker">
+    <button id="mute" class="btn btn-small btn-inverse pull-right">
+      <span class="{{volumeIcon}} icon-white"></span>
+    </button>
+  </template>
+
+  <template name="messagesInputChatWorker">
+      {{#if showMemory}}
+        <div class="row" id="chatInput">
+          <div class="container span8" id="messageInputInner">
+            <form id="messageForm">
+              <input type="text" id="messageInput" placeholder="Type your message and press enter..."  autocomplete="off" >
+            </form>
+          </div>
+        </div>
+      {{else}}
+        <div class="row" id="chatInput">
+          <div class="container span12" id="messageInputInner">
+            <form id="messageForm">
+              <input type="text" id="messageInput" placeholder="Type your message and press enter..."  autocomplete="off" >
+            </form>
+          </div>
+        </div>
+      {{/if}}
+  </template>
+
+  <template name="messagesChatWorker">
+    <div class="row" id="messages" style="width:1%; ">
+      {{#if showMemory}}
+        <div class="container span8" id="messagesInner">
+          {{#each messages}}
+            {{#if system}}
+            <!-- <p class="systemRow">⊕ {{pretty_ts timestamp}} {{body}}</p> -->
+            {{else}}
+                  {{#if isStale timestamp}}
+                      {{#if successful}}
+                        <div class="msgDiv" id="{{staleMessageID}}">
+                          <p class="messageRow stale" timestamp="{{timestamp}}">(<span class="timestamp stale">{{pretty_ts timestamp}}</span> {{role}}: <i>{{body}}</i>)</p>
+                        </div>
+                      {{/if}}
+                  {{else}}
+                      {{#if successful}}
+                        <div class="msgDiv" id="{{acceptedMessageID}}">
+                          <p class="messageRow {{role}} accepted" timestamp="{{timestamp}}"><span class="timestamp">{{pretty_ts timestamp}}</span> <strong>{{role}}:</strong>{{body}}</p>
+                        </div>
+
+                      {{else}}
+                          <!-- <div class="makeClickable" id="{{unacceptedMessageID}}"> -->
+                          <div class="msgDiv" id="{{unacceptedMessageID}}">
+                            <p class="messageRow {{role}}" thresh="{{voteThreshold}}" timestamp="{{timestamp}}"><span class="timestamp">{{pretty_ts timestamp}}</span> <strong>{{role}}:</strong>{{body}}</p>
+                          </div>
+                      {{/if}}
+
+                      {{#if votable}}
+                        <button id="{{id}}" value="{{voted}}" class="vote btn btn-mini span1">{{voted}}</button>
+                      {{/if}}
+                    {{/if}}
+                  {{/if}}
+            {{/each}}
+        </div>
+      {{else}}
+        <div class="container span12" id="messagesInner">
+          {{#each messages}}
+            {{#if system}}
+            <!-- <p class="systemRow">⊕ {{pretty_ts timestamp}} {{body}}</p> -->
+            {{else}}
+                  {{#if isStale timestamp}}
+                      {{#if successful}}
+                        <div class="msgDiv" id="{{staleMessageID}}">
+                          <p class="messageRow stale" timestamp="{{timestamp}}">(<span class="timestamp stale">{{pretty_ts timestamp}}</span> {{role}}: <i>{{body}}</i>)</p>
+                        </div>
+                      {{/if}}
+                  {{else}}
+                      {{#if successful}}
+                        <div class="msgDiv" id="{{acceptedMessageID}}">
+                          <p class="messageRow {{role}} accepted" timestamp="{{timestamp}}"><span class="timestamp">{{pretty_ts timestamp}}</span> <strong>{{role}}:</strong>{{body}}</p>
+                        </div>
+
+                      {{else}}
+                          <!-- <div class="makeClickable" id="{{unacceptedMessageID}}"> -->
+                          <div class="msgDiv" id="{{unacceptedMessageID}}">
+                            <p class="messageRow {{role}}" thresh="{{voteThreshold}}" timestamp="{{timestamp}}"><span class="timestamp">{{pretty_ts timestamp}}</span> <strong>{{role}}:</strong>{{body}}</p>
+                          </div>
+                      {{/if}}
+
+                      {{#if votable}}
+                        <button id="{{id}}" value="{{voted}}" class="vote btn btn-mini span1">{{voted}}</button>
+                      {{/if}}
+                    {{/if}}
+                  {{/if}}
+            {{/each}}
+        </div>
+      {{/if}}
+      </div>
+    </template>
+
+  <template name="memoryChatWorker">
+    <div class="row" id="memory" style="width:1%; ">
+      <div class="container memContainer span4 offset8" id="memoryItems">
+        <!-- <h2>Memory Items</h2> -->
+        <br>
+
+        {{#each memory}}
+          <!-- this is for the crowd chat worker view -->
+          <div class="container span4 makeClickable" id="{{memoryId}}" style="width:90%; ">
+            <p class="memoryRow" style="float:left; "> {{memWhy}}  </p>
+          </div>
+          <br>
+          <br>
+        {{/each}}
+      </div>
+
+    </div>
+  </template>

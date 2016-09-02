@@ -1,0 +1,50 @@
+<!-- Page Layout -->
+<template name="pilotWelcome">
+  <head>
+    <title>Instructions</title>
+  </head>
+
+  <body>
+    <div id="container">
+      {{> intro}}
+      {{> tutorialOne}}
+    </div>
+  </body>
+</template>
+
+<!-- Introduction of the pilot study -->
+<template name="intro">
+  <div id="title">
+    <span>Instructions</span>
+  </div>
+  <div class="introMess">
+    <span class="normal">Hello! Welcome to participate in our online task! The purpose of this task is to see if you can identify facts about a person through online communication and use those facts to help him/her solve problems.</span>
+
+    <span class="normal">In this task, you will see a 10-line chat history between person A and person B, in which person A asked a question and person B tried to answer it. Your job is to <span class="highlight">identify</span> and <span class="highlight">rate</span> facts about person A in the dialog that are important for person B to know in order to answer the question. The facts can either be <span class="highlight">long-term</span>, such as "I do not like spicy", or <span class="highlight">short-term</span>, such as "I had KFC yesterday so I do not want it today".</span>
+
+    <span class="normal">When you find a fact in the chat history, click it and a window will pop up and allow you to <span class="highlight">rephrease</span> the fact in your own language if you want. When you click "submit", the fact will be added to your screen on the left and you can rate how relevant it is to person A's question by choosing from "highly/somehow/not relevant". If you think there are no facts in the dialog, do not submit anything.</span>
+
+    <span class="normal">Now it's the time for you to have a short practice. Please watch the 2 minute video tutorial, then use information in the video to answer the question below.</span>
+    </div>
+</template>
+
+<!-- Tutorial one: The video and the question associated with it -->
+<template name="tutorialOne">
+  <div id="video">
+    <object id="myVideo" data="http://www.youtube.com/embed/W7qWa52k-nE" width="560" height="315"></object>
+  </div>
+
+  <!-- Change the question and answers -->
+  <div id="ques" class="introMess">
+    <span>How do we solve this problem?</span><br>
+    <form>
+      <input type="radio" name="answer" value="right"> Answer One <br>
+      <input type="radio" name="answer" value="wrong"> Answer Two <br>
+      <input type="radio" name="answer" value="wrong"> Answer Three <br>
+      <input type="submit" value="submit">
+    </form>
+
+    <!-- Change the hyperlink to tutorial interface -->
+    <a href="www.google.com" id="link">Please click here and follow instructions to practice using our system. It will take about 3 minutes. Then you will be ready to for the actual task!</a>
+  </div>
+</template>

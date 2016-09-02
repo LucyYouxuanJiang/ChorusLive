@@ -1,0 +1,63 @@
+<template name="chatTutorial">
+<html>
+<head>
+<title>ChorusLive</title>
+</head>
+
+<body>
+
+  <div class="row" id="header" style="top:100px;">
+    <p> <font size="+1">Hi there!</font></p>
+    <p> <font size="+1">This is a sample conversation portal view. You will note that there is a sample conversation already going on between a requester and chat workers. </font></p>
+    <p> <font size="+1">Type in the phrase <font size="+2" color="red"><strong>are you allergic to cheese?</strong></font> in the textbox below and then <font size="+2" color="red"><strong>press the Enter key.</strong></font></font></p>
+
+    <div class="container span12" id="headerInner">
+      <h2 id="logo" class="pull-left brand">
+        Chorus<strong>Live</strong>: Conversation Portal (TUTORIAL)
+      </h2>
+      <!-- {{> muteButton}} -->
+    </div>
+  </div>
+
+  <div class="container" id="content">
+
+    <div class="row" id="messages" style="width:70%; ">
+      <div class="container span8" id="messagesInner">
+
+        <div class="msgDiv" id="staleMessage">
+          <p class="messageRow stale" timestamp="{{timestamp}}">(<span class="timestamp stale">14:05</span> Requester: <i>hello there</i>)</p>
+          <p class="messageRow stale" timestamp="{{timestamp}}">(<span class="timestamp stale">14:05</span> Requester: <i>I am new to this city and wanted to know good places to eat at</i>)</p>
+          <p class="messageRow stale" timestamp="{{timestamp}}">(<span class="timestamp stale">14:08</span> chatWorker1: <i>welcome! how much is your budget?</i>)</p>
+          <p class="messageRow stale" timestamp="{{timestamp}}">(<span class="timestamp stale">14:08</span> chatWorker2: <i>where do you usually eat?</i>)</p>
+          <p class="messageRow stale" timestamp="{{timestamp}}">(<span class="timestamp stale">14:09</span> Requester: <i>something less than $20</i>)</p>
+          <p class="messageRow stale" timestamp="{{timestamp}}">(<span class="timestamp stale">14:12</span> chatWorker1: <i>how about pizza? there's a great pizza place on Main Street</i>)</p>
+        </div>
+
+        <div class="msgDiv" id="acceptedMessage">
+          <!-- <p class="messageRow crowd accepted" timestamp="timestamp"><span class="timestamp">14:16</span> <strong>chatWorker3:</strong>you can get decent fast food for under $20</p> -->
+          </div>
+
+        </div>
+
+      </div>
+  </div>
+
+  <div id="footer">
+    <div class="row" id="chatInput">
+      <div class="container span8 " id="messageInputInner">
+      <!-- <div class="container {{#if requester}} span12 {{/if}}" id="messageInputInner"> -->
+        <form id="messageForm">
+          <input type="text" id="messageInput" placeholder="Type your message and press enter..."  autocomplete="off" style="height: 40px; font-size: 20px">
+        </form>
+      </div>
+    </div>
+    <!-- <input type="button" id="doneWithTask" value="Submit HIT" onclick="window.location = 'https://legionpowered.net/LegionToolsv2/thirdPartySubmitHIT.html';"> -->
+
+  </div>
+
+    <div id="instructions"></div>
+
+</body>
+
+</html>
+</template>

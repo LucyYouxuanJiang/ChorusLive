@@ -1,0 +1,100 @@
+<template name="chatTutorial">
+  <body>
+  <div class="row" id="header">
+    <div class="container span12" id="headerInner">
+      <h2 id="logo" class="pull-left brand">
+        Chorus<strong>Live</strong>: Conversation Portal Tutorial
+      </h2>
+    </div>
+  </div>
+
+  <div class="container" id="content">
+    {{> messagesChatWorkerTutorial}}
+  </div>
+
+  <!-- <div class="container" id="memoryContent"> -->
+    {{> memoryChatWorkerTutorial}}
+  <!-- </div> -->
+
+  <div id="footer">
+    {{> messagesInputChatWorkerTutorial}}
+  </div>
+
+  {{> chatInstrModal}}
+
+</body>
+</template>
+
+<head>
+  <title>ChorusLive</title>
+</head>
+
+  <template name="messagesInputChatWorkerTutorial">
+      <div class="row" id="chatInput">
+        <div class="container span8" id="messageInputInner">
+          <form id="messageForm">
+            <input type="text" id="messageInput" placeholder="Type your message and press enter..."  autocomplete="off" >
+          </form>
+        </div>
+      </div>
+  </template>
+
+  <template name="messagesChatWorkerTutorial">
+    <div class="row" id="messages" style="width:1%; ">
+      <div class="container span8" id="messagesInner">
+        <div class="msgDiv" id="staleMessage">
+          <p class="messageRow stale" timestamp="{{timestamp}}">(<span class="timestamp stale">14:05</span> Requester: <i>hello there</i>)</p>
+          <p class="messageRow stale" timestamp="{{timestamp}}">(<span class="timestamp stale">14:05</span> Requester: <i>I am new to this city and wanted to know good places to eat at</i>)</p>
+          <p class="messageRow stale" timestamp="{{timestamp}}">(<span class="timestamp stale">14:08</span> chatWorker1: <i>welcome! how much is your budget?</i>)</p>
+          <p class="messageRow stale" timestamp="{{timestamp}}">(<span class="timestamp stale">14:08</span> chatWorker2: <i>where do you usually eat?</i>)</p>
+          <p class="messageRow stale" timestamp="{{timestamp}}">(<span class="timestamp stale">14:09</span> Requester: <i>something less than $20</i>)</p>
+          <p class="messageRow stale" timestamp="{{timestamp}}">(<span class="timestamp stale">14:12</span> chatWorker1: <i>how about pizza? there's a great pizza place on Main Street</i>)</p>
+        </div>
+        </div>
+      </div>
+    </template>
+
+  <template name="memoryChatWorkerTutorial">
+    <div class="row" id="memory" style="width:1%; ">
+      <div class="container memContainer span4 offset8" id="memoryItems">
+        <!-- <h2>Memory Items</h2> -->
+        <br>
+          <!-- this is for the crowd chat worker view -->
+          <div class="container span4 makeClickable" id="memfact1" style="width:80%;">
+            <p class="memoryRow"> Click here to open the instructions panel. </p>
+          </div>
+          <div class="container span4 makeClickable" id="memfact2" style="width:80%;">
+            <p class="memoryRow"> This is an example "fact" about the user.  In the real application, you can click on this to highlight the relevant messages for each fact. </p>
+          </div>
+
+
+      </div>
+
+    </div>
+  </template>
+
+
+  <template name="chatInstrModal">
+    <div class="modal" id="chatInstrModal" role="dialog" style="display: none; height:250px">
+      <div class="modal-header">
+        <!-- <a class="close" data-dismiss="modal">×</a> -->
+        <h3>Chat Worker Tutorial Instructions</h3>
+      </div>
+
+      <div class="modal-body" style="height: 100px">
+        <p> Hi there!</p>
+        <p>This is a sample conversation portal view. You will note that there is a sample conversation already going on between a requester and chat workers.</p>
+        <p>Type in the phrase <strong>are you allergic to cheese?</strong> in the textbox below and then <strong>press the Enter key.</strong></p>
+
+      </div> <!-- end of the modal-body class -->
+
+      <div class="modal-footer">
+        <form id="tutInfoForm">
+          <!-- <p> -->
+            <input type="button" value="Got it" class="btn btn-primary tutShow" style="width: 300px; float:left; font-size: 20px">
+          <!-- </p> -->
+        </form>
+      </div>
+
+    </div>
+  </template>

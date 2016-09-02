@@ -1,0 +1,33 @@
+{
+    "convos": [{
+        "workerId": "requester",
+        "body": "hello there from JSON"
+    }, {
+        "workerId": "requester",
+        "body": "I am new to this city and wanted to know a good hotel to stay at"
+    }, {
+        "workerId": "crowd",
+        "body": "what is your budget for the hotel?"
+    }, {
+        "workerId": "crowd",
+        "body": "there is Air BnB, motels, but also expensive hotels like Hilton"
+    }, {
+        "workerId": "requester",
+        "body": "I don't stay in hotels that are more expensive that $100 a night as a rule"
+    }, {
+        "workerId": "crowd",
+        "body": "how many nights will you stay?"
+    }, {
+        "workerId": "crowd",
+        "body": "there is a coupon available for Hilton if you want"
+    }, {
+        "workerId": "requester",
+        "body": "I usually stay three nights all the time because it is my weekend getaway"
+    }, {
+        "workerId": "crowd",
+        "body": "ok, I found some hotels that fit your budget range"
+    }, {
+        "workerId": "crowd",
+        "body": "the most expensive is $89 a night"
+    }]
+}

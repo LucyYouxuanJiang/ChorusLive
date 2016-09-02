@@ -1,0 +1,170 @@
+<template name="memoryTutorial">
+  <head>
+  <title>ChorusLive</title>
+</head>
+
+<body>
+  <div class="row" id="header">
+    <div class="container span12" id="headerInner">
+      <h2 id="logo" class="pull-left brand">
+        Chorus<strong>Live</strong>: Memory Portal Tutorial
+      </h2>
+    </div>
+  </div>
+
+  <div class="container" id="content">
+    {{> messagesMemoryWorkerTutorial}}
+  </div>
+
+  <!-- <div class="container" id="memoryContent"> -->
+    {{> memoryMemoryWorkerTutorial}}
+  <!-- </div> -->
+
+  <div id="footer">
+    {{> memoryInputMemoryWorkerTutorial}}
+  </div>
+
+  {{> memModalMemoryWorkerTutorial}}
+
+  {{> instrModal}}
+
+</body>
+</template>
+
+  <template name="memModalMemoryWorkerTutorial">
+    <div class="modal" id="memInfoModal" role="dialog" style="display: none;">
+      <div class="modal-header">
+        <!-- <a class="close" data-dismiss="modal">×</a> -->
+        <h3>Remember a fact about the user</h3>
+      </div>
+
+      <div class="modal-body">
+        {{> messagesForMemoryTutorial}}
+        <div class="warning"></div>
+      </div> <!-- end of the modal-body class -->
+
+      <div class="modal-footer">
+        <input type="text" id="memInput" placeholder="Select at least one message and describe the fact here..." class="memModalTxtBox" value="" style="width: 600; float:left;">
+
+        <form id="memInfoForm">
+          <!-- <p> -->
+            <input type="button" value="Add User Fact"  class="btn btn-primary heresWhy" style="width: 520px; float:left; font-size: 20px">
+          <!-- </p> -->
+        </form>
+      </div>
+
+    </div>
+  </template>
+
+  <template name="instrModal">
+    <div class="modal" id="memInstrModal" role="dialog" style="display: none;">
+      <div class="modal-header">
+        <!-- <a class="close" data-dismiss="modal">×</a> -->
+        <h3>Memory Worker Tutorial Instructions</h3>
+      </div>
+
+      <div class="modal-body">
+        <p> Hi there! </p>
+        <p> In the following screen, you will see a snapshot of a conversation that took place between a requester and crowd workers. </p>
+        <!-- <p> Your objective is to <strong>click on the Add To Memory</strong> button to save a fact about the requester. </p> -->
+        <p> Your objective is to <strong>save a fact about the requester.</strong></p>
+        <br/>
+        <p> 1. <strong>Click on one (or more) messages</strong> that are all related. Selected messages turn yellow.</p>
+
+        <img src="/img/memTut_fact.png" alt="mem_Tutorial" style="height:250px">
+        <p> 2. Describe what the fact being saved is. </p>
+        <p> 3. Once you save the fact, <strong>click on that fact</strong> in the left panel to complete the tutorial. </p>
+
+        <img src="/img/memTut.png" alt="mem_Tutorial" style="height:250px">
+      </div> <!-- end of the modal-body class -->
+
+      <div class="modal-footer">
+        <form id="tutInfoForm">
+          <!-- <p> -->
+            <input type="button" value="Got it, show me the message snapshot" class="btn btn-primary tutShow" style="width: 500px; float:left; font-size: 20px">
+          <!-- </p> -->
+        </form>
+      </div>
+
+    </div>
+  </template>
+
+
+
+  <template name="messagesForMemoryTutorial">
+    <div class="container memRowContainer">
+      {{#each msgsForMemory}}
+          {{#if memSnapShotFlag}}
+          <div class="makeClickable " id="{{memMsgId}}">
+              <p class="memoryRow" timestamp="{{timestamp}}"><span class="timestamp">{{pretty_ts timestamp}}</span> {{workerId}}:- <i>{{body}}</i> </p>
+          </div>
+          {{/if}}
+      {{/each}}
+    </div>
+  </template>
+
+  <template name="messagesMemoryWorkerTutorial">
+    <div class="row" id="messages" style="width:1%; ">
+      <div class="container span8 offset4" id="messagesInner">
+        {{#each messages}}
+            {{#if system}}
+            {{else}}
+            {{#if isStale timestamp}}
+                {{#if successful}}
+                  {{#if memSnapShotFlag}}
+                  <div class="msgDiv" id="{{staleMessageID}}">
+                    <p class="messageRow stale" timestamp="{{timestamp}}">(<span class="timestamp stale">{{pretty_ts timestamp}}</span> {{workerId}}: <i>{{body}}</i>)</p>
+                  </div>
+                  {{/if}}
+                {{/if}}
+            {{else}}
+                {{#if successful}}
+                  {{#if memSnapShotFlag}}
+                  <div class="msgDiv" id="{{acceptedMessageID}}">
+                    <p class="messageRow {{role}} accepted" timestamp="{{timestamp}}"><span class="timestamp">{{pretty_ts timestamp}}</span> <strong>{{workerId}}:</strong>{{body}}</p>
+                    </div>
+                  {{/if}}
+                {{/if}}
+              {{/if}}
+              {{/if}}
+          {{/each}}
+        </div>
+      </div>
+    </template>
+
+  <template name="memoryMemoryWorkerTutorial">
+    <div class="row" id="memory" style="width:1%; ">
+      <div class="container memContainer span4" id="memoryItems">
+        <br>
+        {{#each memory}}
+          <section style="width:100%;">
+            <div id="leftMem_{{memoryId}}" style="width:100%; float:left;">
+                <p id="{{memoryId}}" class="memoryRow collapseMsgListBtn"> {{memWhy}}  </p>
+            </div>
+            <div id="rightBtn_{{memoryId}}" style="margin-left: 25%; ">
+              <ul id="likertListGroup_{{memoryId}}" class="likert">
+                <li class="likert"><input type="radio" id="1_{{memoryId}}" name="likert_{{memoryId}}" value="0"/></li>
+                <li class="likert"> Not at all</li>
+                <li class="likert"><input type="radio" id="2_{{memoryId}}" name="likert_{{memoryId}}" value="1"/></li>
+                <li class="likert"> Somewhat</li>
+                <li class="likert"><input type="radio" id="3_{{memoryId}}" name="likert_{{memoryId}}" value="2"/></li>
+                <li class="likert"> Highly </li>
+              </ul>
+            </div>
+          </section>
+          <br>
+        {{/each}}
+      </div>
+    </div>
+  </template>
+
+  <template name="memoryInputMemoryWorkerTutorial">
+      <div class="row" id="memInputOuter">
+        <!-- <div class="container span8 offset4" id="memInputInner"> -->
+        <div class="container span4 " id="memInputInner">
+          <form id="memoryInputForm">
+            <input type="button" class="addtoMem" id="memoryInputText" value="(+) Add Messages to Memory"  autocomplete="off" >
+          </form>
+        </div>
+      </div>
+  </template>

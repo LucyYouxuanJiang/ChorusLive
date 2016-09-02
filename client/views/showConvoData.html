@@ -1,0 +1,38 @@
+<template name="showConvoData">
+  <body>
+  <div class="row" id="header">
+    <div class="container span12" id="headerInner">
+      <h2 id="logo" class="pull-left brand">
+        Chorus<strong>Live</strong>: Data View Portal
+      </h2>
+
+      <div class="container" id="content">
+        {{> messagesDataView}}
+      </div>
+
+    </div>
+  </div>
+
+    <head>
+      <title>ChorusLive</title>
+    </head>
+
+  </body>
+</template>
+
+
+<template name="messagesDataView">
+  <div class="row" id="messagesDataRow" style="width:1%; ">
+    <div class="container span12" id="messagesData">
+      {{#each messages}}
+        <div class="msgDiv" id="{{acceptedMessageID}}">
+          {{#if isEqual role "requester"}}
+            <p class="messageRow {{role}} accepted" timestamp="{{timestamp}}"><span class="timestamp">{{pretty_ts timestamp}}</span> <strong>student:</strong>{{body}}</p>
+          {{else}}
+            <p class="messageRow {{role}} accepted" timestamp="{{timestamp}}"><span class="timestamp">{{pretty_ts timestamp}}</span> <strong>advisor:</strong>{{body}}</p>
+          {{/if}}
+        </div>
+      {{/each}}
+    </div>
+  </div>
+  </template>

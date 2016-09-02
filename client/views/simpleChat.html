@@ -1,0 +1,80 @@
+<template name="simpleChat">
+  <body>
+  <div class="row" id="header">
+    <div class="container span12" id="headerInner">
+      <h2 id="logo" class="pull-left brand">
+        Chorus<strong>Live</strong>: One to one Chat app
+      </h2>
+      
+      {{> export }}
+
+      <!-- {{> muteButtonsimpleChat}} -->
+
+      {{> loginButtons}} <span style="color: #fff">(id: {{ currentUser._id }})</span>
+      <!-- <span style="color: #fff">(id: {{ Session.get('mode') }})</span> -->
+    </div>
+  </div>
+
+  <div class="container" id="content">
+    {{> messagesSimpleChat}}
+  </div>
+
+  <div id="footer">
+    {{> messagesInputSimpleChat}}
+  </div>
+
+
+</body>
+</template>
+
+<head>
+  <title>ChorusLive</title>
+</head>
+
+  <template name="nickModalSimpleChat">
+    <div class="modal" id="nickPickModal">
+      <div class="modal-header">
+        <h3>Please Log In for 1-1 Chat</h3>
+      </div>
+      <div class="modal-body">
+            {{> loginButtons}}
+      </div>
+    </div>
+  </template>
+
+
+  <template name="muteButtonsimpleChat">
+    <button id="mute" class="btn btn-small btn-inverse pull-right">
+      <span class="{{volumeIcon}} icon-white"></span>
+    </button>
+  </template>
+
+  <template name="messagesInputSimpleChat">
+      <div class="row" id="chatInput">
+        <div class="container span12" id="messageInputInner">
+          <form id="messageForm">
+            <input type="text" id="messageInput" placeholder="Type your message and press enter..."  autocomplete="off" >
+          </form>
+        </div>
+      </div>
+  </template>
+
+  <template name="messagesSimpleChat">
+    <div class="row" id="messages" style="width:1%; ">
+      <div class="container span12" id="messagesInner">
+         {{#each messages}}
+              <div class="msgDiv">
+                {{#if userSentMessage name }}
+                  <p class="messageRow">⊕ {{pretty_ts timestamp}} - <span style="color: black;">You:</span> {{body}}</p>
+                {{else}}
+                  <p class="messageRow">⊕ {{pretty_ts timestamp}} - <span style="color: blue;">{{name}}</span>: {{body}}</p>
+                {{/if}}
+              </div>
+         {{/each}}
+      </div>
+    </div>
+  </template>
+
+  <template name="export">
+    <button class="btn btn-info exportBtn">EXPORT</button>
+  </template>

@@ -1,0 +1,243 @@
+html, body{ min-height: 100%; max-height: 100%; margin: 0; padding: 0!important;}
+body{overflow: hidden; background: url(/img/grid_noise.png); }
+
+#header{ height: 6vh; width: 100%; position: absolute; top: 0; z-index:100;}
+    #headerInner{background-image:url(/img/irongrip.png); box-shadow: 0px 2px 4px #777; height:100%;}
+        #logo{color: #FFFFFF;display: block;float: left;font-size: 20px;font-weight: 200;
+            line-height: 1;margin: 10px 10px 0;}
+        #mute{margin-right: 4px; margin-top: 8px;}
+
+#content{ width: 100%; position: absolute; top: 45px;height: 87vh;}
+    #messages{height: 100%;}
+    #messagesDataRow{height: 100%;}
+        #messagesInner{overflow-y: scroll; overflow-x: hidden;height:100%; background-color: white;
+            box-shadow: 0px 2px 4px #777;}
+        #messagesData{overflow-y: scroll; overflow-x: hidden;height:100%; background-color: white;
+            box-shadow: 0px 2px 4px #777;}
+        #messagesInner > p { padding: 4px; border-radius:5px;}
+            .messageRow{ color: #666; font-size: 1.2em; margin: 4px 5px;}
+            .messageRow > strong{ margin-right: 5px;}
+            .requester {background-color: #eef;}
+            .requester:nth-child(even) {background-color: #ddf;}
+            .crowd {background-color: #ffefaa;}
+            .crowd:nth-child(even) {background-color: #fffa99;}
+            .admin {background-color: blue;}
+            .admin:nth-child(even) {background-color: rgb(166, 166, 255);}
+            .vote {display:inline-block; float: right;}
+                .timestamp{ font-size: .65em; color: #049cdb;}
+                    .stale{ color: #aaa;}
+                .accepted{ border: 1px solid #999; color: #000;}
+            .systemRow{ margin: 0; font-size: .8em; color: #aaa; padding: 1px 4px!important;}
+            /*.isMsgImp{display: inline-block; float: right;}*/
+
+.makeClickable:hover{
+    cursor: hand;
+    cursor: pointer;
+    opacity: 0.8;
+    background-color: #FFF8C6;
+    /*overflow: auto;*/
+}
+
+.collapseMsgListBtn:hover{
+    cursor: hand;
+    cursor: pointer;
+    opacity: 0.8;
+    background-color: #FFF8C6;
+    /*background-color: #eef;*/
+    /*overflow: auto;*/
+}
+
+.addtoMem:hover{
+    cursor: hand;
+    cursor: pointer;
+    opacity: 0.8;
+    background-color: transparent;
+    border: hidden;
+
+}
+
+#memInputInner{background-color: #4F94CD;}
+
+
+.likert li {
+    display: inline-block;
+    float: right;
+    list-style-type: none;
+    margin: 1px;
+}
+
+input[type="radio"]{
+    margin: 2px 2px 2px 2px
+}
+
+.makeClickable {background-color: transparent}
+
+.memoryRow:nth-child(even) {background-color: ‎#87CEEB}
+
+
+/*.collapseMsgListBtn {background-color: #FFF8C6}*/
+.clickedOn {background-color: #FFFF00;}
+
+/*.makeClickable {background-color: transparent}*/
+
+#memModalMessage{overflow-y: scroll; height: 100%; }
+
+#memory{height: 87.3%; position: absolute; top:45px; }
+
+    #memoryItems{overflow-y: scroll; overflow-x: scroll; height:100%; background-color: white;
+        box-shadow: 0px 2px 4px #777; padding: 0;}
+        .memoryRow{color: #666; font-size: 1.2em; margin: 5px 2px; width: 97%;  border-bottom: double #0000ff; } /*border-top: solid #0000ff;*/
+        .upvote {display:inline-block; float:right;}
+
+#footer{ height: 50px; width: 95%; position: absolute; bottom: 0; }
+    #chatInput{ position: absolute; bottom:0;width:100%;}
+        #messageInputInner{background-image:url(/img/darkdenim3.png);}
+            #messageForm{margin:15px 0 0 0; padding: 0 20px 0 10px;box-shadow: 0px 2px 4px #777;}
+                #messageInput{width: 100%; }
+
+    #memInputOuter{ position: absolute; bottom:0;width:100%;}
+        /*#memInputInner{background-image:url(/img/darkdenim3.png);}*/
+
+            #memoryInputForm{margin:10px 0 0 0; padding: 0 20px 0 10px;box-shadow: 0px 2px 4px #777;}
+                #memoryInputText{width: 100%; font-size: 23px; font-weight: bold; background: none; color:white; border: none}
+
+
+/*.modal{margin: -100px 0 0 -280px !important; display:none;}*/
+.modal{margin: -50px 0 0 -50 !important; position: absolute !important; height: 500px; width: 800px}
+.modal-body{height: 60%; }
+.warning{color: red; margin-bottom: 20px;}
+
+.memModalTxtBox {width:100%}
+.heresWhy {width: 100%}
+
+.collMsgList{overflow: auto; margin:1px;}
+.addBorder{border: dotted red; } /*border: solid blue*/
+
+.clouds-flat-button {
+  position: relative;
+  vertical-align: top;
+  width: 100%;
+  height: 60px;
+  padding: 0;
+  font-size: 15px;
+  color:#454545;
+  text-align: center;
+  /*text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);*/
+  text-shadow: none;
+  background: #ecf0f1;
+  border: 0;
+  border-bottom: 2px solid #dadedf;
+  cursor: pointer;
+  -webkit-box-shadow: inset 0 -2px #dadedf;
+  /*box-shadow: inset 0 -2px #dadedf;*/
+  margin: 4px 5px;
+  box-shadow: none;
+}
+.clouds-flat-button:active {
+  top: 1px;
+  outline: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.graphite-flat-button {
+  margin: 0px 0px 0px 0px;
+  display: block;
+  width: 100%;
+  z-index: 2;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  /*vertical-align: bottom;*/
+  height: 60px;
+  padding: 0;
+  font-size: 28px;
+  color:white;
+  text-align: center;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+  background: #454545;
+  border: 0;
+  border-bottom: 2px solid #2f2e2e;
+  cursor: pointer;
+  -webkit-box-shadow: inset 0 -2px #2f2e2e;
+  box-shadow: inset 0 -2px #2f2e2e;
+}
+.graphite-flat-button:active {
+  top: 1px;
+  outline: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.simpleChatText{
+  font-size: 15px;
+}
+
+.exportBtn{
+  float: right;
+  margin-right: 20px;
+  margin-top: 10px;
+}
+
+#container{
+  position: relative;
+  margin: auto;
+  width: 80%;
+  background: white;
+}
+
+#title{
+  position: relative;
+  height: 60px;
+  text-align: center;
+  font-size: 50px;
+  font-weight: bold;
+  padding: 30px 0 0 0;
+}
+
+.introMess{
+  position: relative;
+  font-family: Times;
+  font-size: 20px;
+  line-height: 150%;
+  text-indent: 2em;
+  padding: 0 5px;
+}
+
+.introMess .normal{
+  display: block;
+  padding-bottom: 10px;
+}
+
+.introMess .highlight{
+  display: inline;
+  font-weight: bold;
+  color: red;
+}
+
+#video{
+  position: rleative;
+  padding: 10px 0;
+  text-align: center;
+}
+
+#ques{
+  text-align: center;
+}
+
+#link{
+  display: none;
+}
+
+#link:hover{
+  color: blue;
+  cursor: move;
+}
+
+.show{
+  display: block;
+}
+
+.hide{
+  display: none;
+}

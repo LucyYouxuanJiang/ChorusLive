@@ -1,0 +1,7 @@
+*** TO-DO LIST ***
+
+-- Move memory module to the right side of screen for chat workers (change css automatically??)
+-- When new memory item added, don't reorder (our new collect memory items, then rerank will take care of this)
+-- "Add memory" button needs some space near the top to avoid overlapping radio buttons
+-- REFACTOR PROJECT!! Keep "Memory" functions in a separate file, as with "Messages," "Ranks," and so on. 
+-- 
